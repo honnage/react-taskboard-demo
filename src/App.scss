@@ -1,0 +1,21 @@
+@import './settings';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.3em;
+  font-size: 14px;
+}
+
+.trello-master {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 40px 50px 1fr;
+  line-height: 1.3em;
+  background-color: $board-bg-color;
+
+
+}

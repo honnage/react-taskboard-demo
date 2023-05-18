@@ -1,16 +1,26 @@
-import React from "react";
 import './BoardContent.scss';
 import Column from "../Column/Column";
 import { initData } from "../../actions/initData";
-import { useState, useEffect } from "react";
-import _, { drop } from 'lodash';
+import { useState, useEffect, useRef } from "react";
+import _ from 'lodash';
 import { mapOrder } from "../../utilities/sorts";
 import { Container, Draggable } from 'react-smooth-dnd';
 import { applyDrag } from "../../utilities/dragDrop";
+import { v4 as uuidv4 } from 'uuid';
 
 const BoardContent = () => {
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
+
+    const [isShowAddList, setIsShowAddList] = useState(false);
+    const inputRef = useRef(null);
+    const [valueInput, setValueInput] = useState("");
+
+    useEffect(() => {
+        if (isShowAddList === true && inputRef && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [isShowAddList]);
 
     useEffect(() => {
         const boardInitData = initData.boards.find(item => item.id === 'board-1')
@@ -26,7 +36,7 @@ const BoardContent = () => {
         let newColumns = [...columns];
         newColumns = applyDrag(newColumns, dropResult);
 
-        let newBoard = {...board};
+        let newBoard = { ...board };
         newBoard.columnOrder = newColumns.map(column => column.id);
         newBoard.column = newColumns;
 
@@ -35,7 +45,7 @@ const BoardContent = () => {
     }
 
     const onCardDrop = (dropResult, columnId) => {
-        if (dropResult.removedIndex !== null || dropResult.addedIndex !== null ) {
+        if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
             console.log('>>> inside onColumnDrop', dropResult, 'with columnid', columnId)
 
             let newColumns = [...columns];
@@ -50,12 +60,37 @@ const BoardContent = () => {
         }
     }
 
+
     if (_.isEmpty(board)) {
         return (
             <>
                 <div className='not-found'>Board not found</div>
             </>
         )
+    }
+
+
+    const handleAddList = () => {
+        if (!valueInput) {
+            if (inputRef && inputRef.current)
+                inputRef.current.focus()
+            return
+        }
+
+        // console.log('>>> check value input:', valueInput)
+        // update board colums
+        const _columns = _.cloneDeep(columns);
+        _columns.push({
+            id: uuidv4(),
+            boardId: board.id,
+            title: valueInput,
+            cards: []
+        })
+        setColumns(_columns);
+        setValueInput("");
+        inputRef.current.value = "";
+        inputRef.current.focus();
+        console.log('inputRef', inputRef)
     }
 
     return (
@@ -85,9 +120,28 @@ const BoardContent = () => {
                         )
                     })}
 
-                    <div className="add-new-column">
-                        <i className="fa fa-plus icon"></i> Add another column
-                    </div>
+                    {isShowAddList === false
+                        ?
+                        <div className="add-new-column" onClick={() => setIsShowAddList(true)}>
+                            <i className="fa fa-plus icon"></i> Add another column
+                        </div>
+                        :
+                        <div className="content-add-column">
+                            <input
+                                type="text"
+                                className="form-control"
+                                ref={inputRef}
+                                valueInput={valueInput}
+                                onChange={(event) => setValueInput(event.target.value)}
+                            />
+                            <div className="group-btn">
+                                <button className="btn btn-success"
+                                    onClick={() => handleAddList()}>Add list
+                                </button>
+                                <i className="fa fa-times icon" onClick={() => setIsShowAddList(false)}></i>
+                            </div>
+                        </div>
+                    }
 
                 </Container>
             </div>

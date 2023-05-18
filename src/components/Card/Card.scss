@@ -18,4 +18,16 @@ div.Card-item {
       border-top-left-radius: $card-border-radius;
       border-top-right-radius: $card-border-radius;
     }
+
+    .edit-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 1px; /* ห่างขอบขวา 4px */
+      padding-top: 15px;
+
+      button {
+        margin-right: 5px;
+        font-size: 12px;
+      }
+    }
   }

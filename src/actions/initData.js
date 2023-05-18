@@ -14,7 +14,7 @@ export const initData =  {
                             id: 'card-1',
                             boardId: 'board-1',
                             columnId: 'column-1',
-                            title: 'Tile of card 1',
+                            title: 'Tile of card 1 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
                             image: "https://raw.githubusercontent.com/haryphamdev/sharing-host-files/master/trello/img-design.png"
                         },
                         {

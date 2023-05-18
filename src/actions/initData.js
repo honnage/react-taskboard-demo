@@ -29,7 +29,7 @@ export const initData =  {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'Tile of card 3',
-                            image: null
+                            image: "https://raw.githubusercontent.com/haryphamdev/sharing-host-files/master/trello/img-design.png"
                         },
                         {
                             id: 'card-4',
@@ -50,6 +50,41 @@ export const initData =  {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'Tile of card 6',
+                            image: null
+                        },
+                        {
+                            id: 'card-7',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'Tile of card 7',
+                            image: null
+                        },
+                        {
+                            id: 'card-7',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'Tile of card 7',
+                            image: null
+                        },
+                        {
+                            id: 'card-7',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'Tile of card 7',
+                            image: null
+                        },
+                        {
+                            id: 'card-7',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'Tile of card 7',
+                            image: null
+                        },
+                        {
+                            id: 'card-7',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'Tile of card 7',
                             image: null
                         },
                         {

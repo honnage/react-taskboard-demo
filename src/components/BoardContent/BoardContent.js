@@ -93,6 +93,24 @@ const BoardContent = () => {
         console.log('inputRef', inputRef)
     }
 
+    const onUpdateColumn = (newColumn) => {
+        console.log(newColumn)
+        const columnIdUpdate = newColumn.id;
+        let ncols = [...columns]; // original columns
+        let index = ncols.findIndex(item => item.id === columnIdUpdate)
+        if (newColumn._destroy) {
+            // remote column
+            ncols.splice(index, 1);
+
+        } else {
+            // update title
+            ncols[index] = newColumn;
+        }
+
+        setColumns(ncols)
+    }
+
+    console.log(columns)
     return (
         <>
             {/* เรียง columns แนวนอน */}
@@ -115,6 +133,7 @@ const BoardContent = () => {
                                 <Column
                                     column={column}
                                     onCardDrop={onCardDrop}
+                                    onUpdateColumn={onUpdateColumn}
                                 />
                             </Draggable>
                         )
